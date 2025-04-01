@@ -60,9 +60,24 @@
       <input type="number" class="form-control" id="bookYear" required>
     </div>
     <div class="mb-3">
+      <label for="bookGenres" class="form-label">Genres</label>
+      <select class="form-select" id="bookGenres" multiple required>
+        <option value="Fiction">Fiction</option>
+        <option value="Non-Fiction">Non-Fiction</option>
+        <option value="Science">Science</option>
+        <option value="History">History</option>
+        <option value="Biography">Biography</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Mystery">Mystery</option>
+        <!-- Add more genres as needed -->
+      </select>
+      <small class="form-text text-muted">Hold down the Ctrl (Windows) or Command (Mac) key to select multiple genres.</small>
+    </div>
+    <div class="mb-3">
       <label for="bookQuantity" class="form-label">Quantity Available</label>
       <input type="number" class="form-control" id="bookQuantity" required>
     </div>
+
     <button type="submit" class="btn btn-primary">Add Book</button>
   </form>
 </div>

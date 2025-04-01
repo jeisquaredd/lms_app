@@ -57,12 +57,28 @@
       <input type="text" class="form-control" id="authorLastName" required>
     </div>
     <div class="mb-3">
-      <label for="authorBirthYear" class="form-label">Birth Year</label>
-      <input type="number" class="form-control" id="authorBirthYear" required>
+      <label for="authorBirthYear" class="form-label">Birth Date</label>
+      <input type="date" class="form-control" id="authorBirthYear" max="<?= date('Y-m-d') ?>" required>
     </div>
     <div class="mb-3">
       <label for="authorNationality" class="form-label">Nationality</label>
-      <input type="text" class="form-control" id="authorNationality" required>
+      <select class="form-select" id="authorNationality" required>
+        <option value="" disabled selected>Select Nationality</option>
+        <option value="American">Filipino</option>
+        <option value="American">American</option>
+        <option value="British">British</option>
+        <option value="Canadian">Canadian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="French">French</option>
+        <option value="German">German</option>
+        <option value="Indian">Indian</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Mexican">Mexican</option>
+        <option value="Russian">Russian</option>
+        <option value="South African">South African</option>
+        <option value="Spanish">Spanish</option>
+        <option value="Other">Other</option>
+      </select>
     </div>
     <button type="submit" class="btn btn-primary">Add Author</button>
   </form>
