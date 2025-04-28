@@ -23,7 +23,13 @@
   </style>
 </head>
 <body>
-
+<?php
+// Output SweetAlert script if set
+if (!empty($sweetAlertConfig)) {
+    echo $sweetAlertConfig;
+    exit; // Stop further execution
+}
+?>
 <div class="container custom-container rounded-3 shadow my-5 p-3 px-5">
   <h3 class="text-center mt-4">Registration Form</h3>
   <form method="post" action="" enctype="multipart/form-data" novalidate>
@@ -33,18 +39,19 @@
         <div class="card-header bg-info text-white">Account Information</div>
         <div class="card-body">
 
-          <div class="form-group">
+        <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" class="form-control" name="username" placeholder="Enter username" required>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Enter username" required>
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please enter a valid username.</div>
-          </div>
-          
+            <div id="usernameFeedback" class="invalid-feedback"></div> <!-- New feedback div -->
+        </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please enter a valid email.</div>
+            <div id="emailFeedback" class="invalid-feedback"></div> <!-- Custom feedback -->
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
@@ -61,7 +68,7 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary mt-3" onclick="nextStep()">Next</button>
+      <button type="button" id="nextButton" class="btn btn-primary mt-3" onclick="nextStep()">Next</button>
     </div>
 
     <!-- Step 2 -->
@@ -167,7 +174,6 @@
     </div>
   </form>
 </div>
-
 <script src="./bootstrap-5.3.3-dist/js/bootstrap.js"></script>
 <!-- Script for Address Selector -->
 <script src="ph-address-selector.js"></script>
