@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 28, 2025 at 02:55 AM
+-- Generation Time: Apr 28, 2025 at 07:18 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -45,15 +45,6 @@ CREATE TABLE `Address` (
   `ba_province` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `Address`
---
-
-INSERT INTO `Address` (`address_id`, `ba_street`, `ba_barangay`, `ba_city`, `ba_province`) VALUES
-(1, 'Baker Street', 'Barangay 1', 'London', 'England'),
-(2, '5th Avenue', 'Barangay 2', 'New York', 'NY'),
-(3, 'Evergreen Terrace', 'Barangay 3', 'Springfield', 'IL');
-
 -- --------------------------------------------------------
 
 --
@@ -67,17 +58,6 @@ CREATE TABLE `Authors` (
   `author_birthday` date NOT NULL,
   `author_nat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `Authors`
---
-
-INSERT INTO `Authors` (`author_id`, `author_FN`, `author_LN`, `author_birthday`, `author_nat`) VALUES
-(1, 'F. Scott', 'Fitzgerald', '1896-09-24', 'American'),
-(2, 'George', 'Orwell', '1903-06-25', 'British'),
-(3, 'Harper', 'Lee', '1926-04-28', 'American'),
-(4, 'Jane', 'Austen', '1775-12-16', 'British'),
-(5, 'J.K.', 'Rowling', '1965-07-31', 'British');
 
 -- --------------------------------------------------------
 
@@ -93,17 +73,6 @@ CREATE TABLE `Books` (
   `quantity_avail` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `Books`
---
-
-INSERT INTO `Books` (`book_id`, `book_title`, `book_isbn`, `book_pubyear`, `quantity_avail`) VALUES
-(1, 'The Great Gatsby', '9780743273565', 1925, 10),
-(2, '1984', '9780451524935', 1949, 8),
-(3, 'To Kill a Mockingbird', '9780061120084', 1960, 5),
-(4, 'Pride and Prejudice', '9780141040349', 1813, 7),
-(5, 'Harry Potter and the Sorcerer’s Stone', '9780590353427', 1997, 12);
-
 -- --------------------------------------------------------
 
 --
@@ -115,17 +84,6 @@ CREATE TABLE `Book_Authors` (
   `book_id` int(11) DEFAULT NULL,
   `author_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `Book_Authors`
---
-
-INSERT INTO `Book_Authors` (`ba_id`, `book_id`, `author_id`) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -139,40 +97,6 @@ CREATE TABLE `Book_Copy` (
   `is_available` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `Book_Copy`
---
-
-INSERT INTO `Book_Copy` (`copy_id`, `book_id`, `is_available`) VALUES
-(1, 1, 0),
-(2, 1, 1),
-(3, 2, 0),
-(4, 3, 1),
-(5, 4, 0),
-(6, 5, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Borrowers_Address`
---
-
-CREATE TABLE `Borrowers_Address` (
-  `ba_bridge_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `address_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `Borrowers_Address`
---
-
-INSERT INTO `Borrowers_Address` (`ba_bridge_id`, `user_id`, `address_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 2, 1),
-(4, 2, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -183,17 +107,6 @@ CREATE TABLE `Genres` (
   `genre_id` int(11) NOT NULL,
   `genre_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `Genres`
---
-
-INSERT INTO `Genres` (`genre_id`, `genre_name`) VALUES
-(3, 'Classic'),
-(2, 'Dystopian'),
-(5, 'Fantasy'),
-(1, 'Fiction'),
-(4, 'Romance');
 
 -- --------------------------------------------------------
 
@@ -206,17 +119,6 @@ CREATE TABLE `Genre_Books` (
   `genre_id` int(11) DEFAULT NULL,
   `book_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `Genre_Books`
---
-
-INSERT INTO `Genre_Books` (`gb_id`, `genre_id`, `book_id`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -231,19 +133,6 @@ CREATE TABLE `Transactions` (
   `due_date` date NOT NULL,
   `return_date` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `Transactions`
---
-
-INSERT INTO `Transactions` (`transaction_id`, `user_id`, `transaction_date`, `due_date`, `return_date`) VALUES
-(1, 1, '2024-01-10', '2024-01-20', '2024-01-18 16:00:00'),
-(2, 2, '2024-01-12', '2024-01-22', NULL),
-(3, 3, '2024-01-15', '2024-01-25', '2024-01-25 16:00:00'),
-(4, 1, '2024-02-01', '2024-02-10', '2024-02-08 16:00:00'),
-(5, 2, '2024-02-05', '2024-02-15', '2024-02-13 16:00:00'),
-(6, 1, '2025-03-19', '2025-03-26', NULL),
-(7, 3, '2025-04-25', '2025-04-30', NULL);
 
 -- --------------------------------------------------------
 
@@ -267,26 +156,33 @@ CREATE TABLE `Users` (
   `user_id` int(11) NOT NULL,
   `user_FN` varchar(100) NOT NULL,
   `user_LN` varchar(100) NOT NULL,
+  `user_birthday` date DEFAULT NULL,
+  `user_sex` varchar(6) DEFAULT NULL,
   `user_email` varchar(100) NOT NULL,
-  `user_phone` varchar(15) NOT NULL
+  `user_phone` varchar(15) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
+  `user_type` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `Users`
---
-
-INSERT INTO `Users` (`user_id`, `user_FN`, `user_LN`, `user_email`, `user_phone`) VALUES
-(1, 'John', 'Doe', 'john.doe@email.com', '1234567890'),
-(2, 'Jane', 'Smith', 'jane.smith@email.com', '0987654321'),
-(3, 'Alice', 'Brown', 'alice.brown@email.com', '1122334455');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_pictures`
+-- Table structure for table `Users_Address`
 --
 
-CREATE TABLE `users_pictures` (
+CREATE TABLE `Users_Address` (
+  `ba_bridge_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `address_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Users_Pictures`
+--
+
+CREATE TABLE `Users_Pictures` (
   `up_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `user_pic_url` varchar(255) NOT NULL,
@@ -332,14 +228,6 @@ ALTER TABLE `Book_Copy`
   ADD KEY `book_id` (`book_id`);
 
 --
--- Indexes for table `Borrowers_Address`
---
-ALTER TABLE `Borrowers_Address`
-  ADD PRIMARY KEY (`ba_bridge_id`),
-  ADD KEY `borrower_id` (`user_id`),
-  ADD KEY `address_id` (`address_id`);
-
---
 -- Indexes for table `Genres`
 --
 ALTER TABLE `Genres`
@@ -359,7 +247,7 @@ ALTER TABLE `Genre_Books`
 --
 ALTER TABLE `Transactions`
   ADD PRIMARY KEY (`transaction_id`),
-  ADD KEY `borrower_id` (`user_id`);
+  ADD KEY `transactions_ibfk_2` (`user_id`);
 
 --
 -- Indexes for table `Transaction_Copies`
@@ -377,9 +265,17 @@ ALTER TABLE `Users`
   ADD UNIQUE KEY `borrower_email` (`user_email`);
 
 --
--- Indexes for table `users_pictures`
+-- Indexes for table `Users_Address`
 --
-ALTER TABLE `users_pictures`
+ALTER TABLE `Users_Address`
+  ADD PRIMARY KEY (`ba_bridge_id`),
+  ADD KEY `address_id` (`address_id`),
+  ADD KEY `users_address_ibfk_1` (`user_id`);
+
+--
+-- Indexes for table `Users_Pictures`
+--
+ALTER TABLE `Users_Pictures`
   ADD PRIMARY KEY (`up_id`),
   ADD KEY `user_id` (`user_id`);
 
@@ -391,19 +287,19 @@ ALTER TABLE `users_pictures`
 -- AUTO_INCREMENT for table `Address`
 --
 ALTER TABLE `Address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Authors`
 --
 ALTER TABLE `Authors`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Books`
 --
 ALTER TABLE `Books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Book_Authors`
@@ -415,13 +311,7 @@ ALTER TABLE `Book_Authors`
 -- AUTO_INCREMENT for table `Book_Copy`
 --
 ALTER TABLE `Book_Copy`
-  MODIFY `copy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `Borrowers_Address`
---
-ALTER TABLE `Borrowers_Address`
-  MODIFY `ba_bridge_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `copy_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Genres`
@@ -433,13 +323,13 @@ ALTER TABLE `Genres`
 -- AUTO_INCREMENT for table `Genre_Books`
 --
 ALTER TABLE `Genre_Books`
-  MODIFY `gb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `gb_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Transactions`
 --
 ALTER TABLE `Transactions`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Transaction_Copies`
@@ -451,12 +341,18 @@ ALTER TABLE `Transaction_Copies`
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users_pictures`
+-- AUTO_INCREMENT for table `Users_Address`
 --
-ALTER TABLE `users_pictures`
+ALTER TABLE `Users_Address`
+  MODIFY `ba_bridge_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Users_Pictures`
+--
+ALTER TABLE `Users_Pictures`
   MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -477,13 +373,6 @@ ALTER TABLE `Book_Copy`
   ADD CONSTRAINT `book_copy_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `Books` (`book_id`);
 
 --
--- Constraints for table `Borrowers_Address`
---
-ALTER TABLE `Borrowers_Address`
-  ADD CONSTRAINT `borrowers_address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `borrowers_address_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `Address` (`address_id`);
-
---
 -- Constraints for table `Genre_Books`
 --
 ALTER TABLE `Genre_Books`
@@ -494,7 +383,7 @@ ALTER TABLE `Genre_Books`
 -- Constraints for table `Transactions`
 --
 ALTER TABLE `Transactions`
-  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
 
 --
 -- Constraints for table `Transaction_Copies`
@@ -504,9 +393,16 @@ ALTER TABLE `Transaction_Copies`
   ADD CONSTRAINT `transaction_copies_ibfk_2` FOREIGN KEY (`copy_id`) REFERENCES `Book_Copy` (`copy_id`);
 
 --
--- Constraints for table `users_pictures`
+-- Constraints for table `Users_Address`
 --
-ALTER TABLE `users_pictures`
+ALTER TABLE `Users_Address`
+  ADD CONSTRAINT `users_address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`),
+  ADD CONSTRAINT `users_address_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `Address` (`address_id`);
+
+--
+-- Constraints for table `Users_Pictures`
+--
+ALTER TABLE `Users_Pictures`
   ADD CONSTRAINT `users_pictures_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users` (`user_id`);
 COMMIT;
 

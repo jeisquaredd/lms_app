@@ -9,7 +9,10 @@
   <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
   <!-- JQuery for Address Selector -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <title>Form with MultiStep and Address Selector</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <title>LMS | Registration</title>
   <style>
     .form-step {
       display: none;
@@ -20,9 +23,10 @@
   </style>
 </head>
 <body>
+
 <div class="container custom-container rounded-3 shadow my-5 p-3 px-5">
   <h3 class="text-center mt-4">Registration Form</h3>
-  <form method="post" action="" novalidate>
+  <form method="post" action="" enctype="multipart/form-data" novalidate>
     <!-- Step 1 -->
     <div class="form-step form-step-active" id="step-1">
       <div class="card mt-4">
@@ -96,6 +100,17 @@
               <div class="valid-feedback">Looks good.</div>
               <div class="invalid-feedback">Please select a sex.</div>
             </div>
+
+              <!-- New Phone Number field -->
+                <div class="form-group col-md-6">
+        <label for="phone">Phone Number:</label>
+        <input type="text" class="form-control" name="phone" placeholder="Enter phone number" required>
+      </div>
+      <!-- New Profile Picture field -->
+      <div class="form-group col-md-6">
+        <label for="profile_picture">Profile Picture:</label>
+        <input type="file" class="form-control" name="profile_picture" accept="image/*" required>
+      </div>
           </div>
         </div>
       </div>
@@ -111,7 +126,7 @@
           <div class="form-group">
             <label class="form-label">Region<span class="text-danger"> *</span></label>
             <select name="user_region" class="form-control form-control-md" id="region"></select>
-            <input type="hidden" class="form-control form-control-md" name="region_text" id="region-text">
+            <input type="hidden" class="form-control form-control-md" name="user_province" id="region-text">
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please select a region.</div>
           </div>
@@ -119,14 +134,14 @@
             <div class="form-group col-md-6">
               <label class="form-label">Province<span class="text-danger"> *</span></label>
               <select name="user_province" class="form-control form-control-md" id="province"></select>
-              <input type="hidden" class="form-control form-control-md" name="province_text" id="province-text" required>
+              <input type="hidden" class="form-control form-control-md" name="user_province" id="province-text" required>
               <div class="valid-feedback">Looks good!</div>
               <div class="invalid-feedback">Please select your province.</div>
             </div>
             <div class="form-group col-md-6">
               <label class="form-label">City / Municipality<span class="text-danger"> *</span></label>
               <select name="user_city" class="form-control form-control-md" id="city"></select>
-              <input type="hidden" class="form-control form-control-md" name="city_text" id="city-text" required>
+              <input type="hidden" class="form-control form-control-md" name="user_city" id="city-text" required>
               <div class="valid-feedback">Looks good!</div>
               <div class="invalid-feedback">Please select your city/municipality.</div>
             </div>
@@ -134,7 +149,7 @@
           <div class="form-group">
             <label class="form-label">Barangay<span class="text-danger"> *</span></label>
             <select name="user_barangay" class="form-control form-control-md" id="barangay"></select>
-            <input type="hidden" class="form-control form-control-md" name="barangay_text" id="barangay-text" required>
+            <input type="hidden" class="form-control form-control-md" name="user_barangay" id="barangay-text" required>
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please select your barangay.</div>
           </div>
