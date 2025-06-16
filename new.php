@@ -118,36 +118,38 @@
               </tr>
             </thead>
             <tbody>
+                <?php
+        $data = $con->viewAuthors();
+        foreach ($data as $rows) {
+        ?>
               <tr>
-                <td>1</td>
-                <td>Mark</td>
+                <td><?php echo $rows['authod_ID']?></td>
+                <td><?php echo $rows['authod_FN']?></td>
                 <td>Twain</td>
                 <td>1835</td>
                 <td>American</td>
                 <td>
-                  <button type="submit" class="btn btn-warning btn-sm">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
-                  <button type="submit" name="delete" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this author?')">
-                    <i class="bi bi-x-square"></i>
-                  </button>
+                  <div class="btn-group" role="group">
+                    <form action="update_authors.php" method="post">
+                    
+                    <input type="hidden" name="id" value="<?php echo $rows['author_id']; ?>">  
+                    <button type="submit" class="btn btn-warning btn-sm">
+                      <i class="fas fa-edit"></i>
+                    </button>
+  
+                    </form>
+                    
+                    <form method="POST" class="mx-1">
+                      <input type="hidden" name="id" value="<?php echo $rows['author_id']; ?>">
+                      <button type="submit" name="delete" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </form>
+        </div>
+
                 </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Jane</td>
-                <td>Austen</td>
-                <td>1775</td>
-                <td>British</td>
-                <td>
-                  <button type="submit" class="btn btn-warning btn-sm">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
-                  <button type="submit" name="delete" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this author?')">
-                    <i class="bi bi-x-square"></i>
-                  </button>
-                </td>
-              </tr>
+   
             </tbody>
           </table>
         </div>
@@ -291,3 +293,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script> <!-- Correct Bootstrap JS -->
 </body>
 </html>
+
+
+<?php
+
+$id = $_POST['id'];
+echo $id;
+?>
